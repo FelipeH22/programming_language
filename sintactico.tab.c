@@ -79,12 +79,12 @@
     #define NOTHING -1
     #define INDENTOFFSET 2
 
-    enum ParseTreeNodeType {PROGRAMA, SENTENCIAS, SENTENCIA, ASIGNACION, FUNCION, PARAMETROS, CICLO, CONDICIONAL,
+    enum ParseTreeNodeType {PROGRAMA, SENTENCIAS, SENTENCIA, ASIGNACION, FUNCION, PARAMETROS, CICLO, CONDICIONAL, CASE,
     EXPRESION, EXPRESION_LOGICA, EXPRESION_ARITMETICA, OPERADOR_LOGICO, TERMINO, OPERADOR_ARITMETICO,
     TIPO_DATO, ID_VALUE, NUMBER_VALUE};
 
     char *NodeName[] = {"PROGRAMA", "SENTENCIAS", "SENTENCIA", "ASIGNACION", "FUNCION", "PARAMETROS", "CICLO", "CONDICIONAL",
-                            "EXPRESION", "EXPRESION_LOGICA", "EXPRESION_ARITMETICA", "OPERADOR_LOGICO", "TERMINO", "OPERADOR_ARITMETICO",
+                            "CASE", "EXPRESION", "EXPRESION_LOGICA", "EXPRESION_ARITMETICA", "OPERADOR_LOGICO", "TERMINO", "OPERADOR_ARITMETICO",
                             "TIPO_DATO", "ID_VALUE", "NUMBER_VALUE"};
 
     #ifndef TRUE
@@ -196,7 +196,7 @@ enum yysymbol_kind_t
   YYSYMBOL_parametros = 41,                /* parametros  */
   YYSYMBOL_ciclo = 42,                     /* ciclo  */
   YYSYMBOL_condicional = 43,               /* condicional  */
-  YYSYMBOL_caso = 44,                      /* caso  */
+  YYSYMBOL_case = 44,                      /* case  */
   YYSYMBOL_expresion = 45,                 /* expresion  */
   YYSYMBOL_expresion_logica = 46,          /* expresion_logica  */
   YYSYMBOL_operador_logico = 47,           /* operador_logico  */
@@ -620,7 +620,7 @@ static const char *const yytname[] =
   "DEVOLVER", "MIENTRAS", "FMIENTRAS", "HACER", "SI", "SINO", "CASO",
   "FCASO", "VERDADERO", "FALSO", "ENT", "REAL", "NUM", "ID", "$accept",
   "programa", "sentencias", "sentencia", "asignacion", "funcion",
-  "parametros", "ciclo", "condicional", "caso", "expresion",
+  "parametros", "ciclo", "condicional", "case", "expresion",
   "expresion_logica", "operador_logico", "expresion_aritmetica", "termino",
   "operador_aritmetico", "tipo_dato", "identificador", "numero", YY_NULLPTR
 };
@@ -1302,9 +1302,9 @@ yyreduce:
 #line 1303 "sintactico.tab.c"
     break;
 
-  case 9: /* sentencia: caso  */
+  case 9: /* sentencia: case  */
 #line 93 "sintactico.y"
-                        { (yyval.tVal) = create_node(NOTHING, CASO, (yyvsp[0].tVal), NULL, NULL, NULL, NULL);        }
+                        { (yyval.tVal) = create_node(NOTHING, CASE, (yyvsp[0].tVal), NULL, NULL, NULL, NULL);        }
 #line 1309 "sintactico.tab.c"
     break;
 
@@ -1382,9 +1382,9 @@ yyreduce:
 #line 1383 "sintactico.tab.c"
     break;
 
-  case 21: /* caso: CASO expresion_logica HACER sentencias FCASO  */
+  case 21: /* case: CASO expresion_logica HACER sentencias FCASO  */
 #line 129 "sintactico.y"
-                                                     { (yyval.tVal) = create_node(NOTHING, CASO, (yyvsp[-3].tVal), (yyvsp[-1].tVal), NULL, NULL, NULL); }
+                                                     { (yyval.tVal) = create_node(NOTHING, CASE, (yyvsp[-3].tVal), (yyvsp[-1].tVal), NULL, NULL, NULL); }
 #line 1389 "sintactico.tab.c"
     break;
 

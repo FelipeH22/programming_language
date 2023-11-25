@@ -9,12 +9,12 @@
     #define NOTHING -1
     #define INDENTOFFSET 2
 
-    enum ParseTreeNodeType {PROGRAMA, SENTENCIAS, SENTENCIA, ASIGNACION, FUNCION, PARAMETROS, CICLO, CONDICIONAL,
+    enum ParseTreeNodeType {PROGRAMA, SENTENCIAS, SENTENCIA, ASIGNACION, FUNCION, PARAMETROS, CICLO, CONDICIONAL, CASE,
     EXPRESION, EXPRESION_LOGICA, EXPRESION_ARITMETICA, OPERADOR_LOGICO, TERMINO, OPERADOR_ARITMETICO,
     TIPO_DATO, ID_VALUE, NUMBER_VALUE};
 
     char *NodeName[] = {"PROGRAMA", "SENTENCIAS", "SENTENCIA", "ASIGNACION", "FUNCION", "PARAMETROS", "CICLO", "CONDICIONAL",
-                            "EXPRESION", "EXPRESION_LOGICA", "EXPRESION_ARITMETICA", "OPERADOR_LOGICO", "TERMINO", "OPERADOR_ARITMETICO",
+                            "CASE", "EXPRESION", "EXPRESION_LOGICA", "EXPRESION_ARITMETICA", "OPERADOR_LOGICO", "TERMINO", "OPERADOR_ARITMETICO",
                             "TIPO_DATO", "ID_VALUE", "NUMBER_VALUE"};
 
     #ifndef TRUE
@@ -69,7 +69,7 @@
 %token<iVal> NUM ID
 
 %type<tVal> programa sentencias sentencia asignacion funcion parametros ciclo condicional
-                caso expresion expresion_logica expresion_aritmetica operador_logico termino operador_aritmetico
+                case expresion expresion_logica expresion_aritmetica operador_logico termino operador_aritmetico
                 tipo_dato identificador numero
 
 
@@ -90,7 +90,7 @@ sentencia : asignacion  { $$ = create_node(NOTHING, SENTENCIA, $1, NULL, NULL, N
           | funcion     { $$ = create_node(NOTHING, FUNCION, $1, NULL, NULL, NULL, NULL);     }
           | ciclo       { $$ = create_node(NOTHING, CICLO, $1, NULL, NULL, NULL, NULL);       }
           | condicional { $$ = create_node(NOTHING, CONDICIONAL, $1, NULL, NULL, NULL, NULL); }
-          | caso        { $$ = create_node(NOTHING, CASO, $1, NULL, NULL, NULL, NULL);        }
+          | case        { $$ = create_node(NOTHING, CASE, $1, NULL, NULL, NULL, NULL);        }
           | expresion   { $$ = create_node(NOTHING, EXPRESION, $1, NULL, NULL, NULL, NULL);   }
           ;
 
@@ -126,7 +126,7 @@ ciclo : MIENTRAS expresion HACER sentencias FMIENTRAS  { $$ = create_node(NOTHIN
 condicional : SI expresion HACER sentencias SINO HACER sentencias  { $$ = create_node(NOTHING, CONDICIONAL, $2, $4, $7, NULL, NULL); }
             ;
 
-caso : CASO expresion_logica HACER sentencias FCASO  { $$ = create_node(NOTHING, CASO, $2, $4, NULL, NULL, NULL); }
+case : CASO expresion_logica HACER sentencias FCASO  { $$ = create_node(NOTHING, CASE, $2, $4, NULL, NULL, NULL); }
      ;
 
 expresion : expresion_logica  { $$ = create_node(NOTHING, EXPRESION, $1, NULL, NULL, NULL, NULL); }
