@@ -1,0 +1,1313 @@
+Terminals unused in grammar
+
+    DEVOLVER
+    FMIENTRAS
+    HACER
+    CASO
+    FCASO
+
+
+State 50 conflicts: 7 shift/reduce
+State 55 conflicts: 10 reduce/reduce
+State 69 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: sentencias
+
+    2 sentencias: sentencia
+    3           | sentencias sentencia
+
+    4 sentencia: asignacion
+    5          | funcion
+    6          | ciclo
+    7          | condicional
+    8          | expresion
+
+    9 asignacion: identificador ASIGNA expresion
+   10           | identificador ASIGNA numero
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+
+   12 parametros: identificador DOSPUNTOS tipo_dato
+   13           | parametros COMA parametros
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+   16 expresion: expresion_logica
+   17          | expresion_aritmetica
+
+   18 expresion_logica: expresion_logica operador_logico expresion_logica
+   19                 | expresion_aritmetica operador_logico expresion_aritmetica
+   20                 | verdadero
+   21                 | falso
+
+   22 operador_logico: O
+   23                | Y
+   24                | NO
+   25                | MENOR
+   26                | MAYOR
+   27                | IGUAL
+   28                | DIF
+
+   29 expresion_aritmetica: termino
+   30                     | termino operador_aritmetico termino
+   31                     | PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER
+
+   32 termino: identificador
+   33        | numero
+
+   34 operador_aritmetico: MAS
+   35                    | MENOS
+   36                    | MULT
+   37                    | DIV
+
+   38 tipo_dato: ENT
+   39          | REAL
+
+   40 identificador: ID
+
+   41 numero: NUM
+
+   42 verdadero: VERDADERO
+
+   43 falso: FALSO
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    PARENTESIS_IZQ (258) 11 14 15 31
+    PARENTESIS_DER (259) 11 14 15 31
+    CORCHETE_IZQ (260) 11 14 15
+    CORCHETE_DER (261) 11 14 15
+    COMA (262) 13
+    DOSPUNTOS (263) 12
+    ASIGNA (264) 9 10
+    MAS (265) 34
+    MENOS (266) 35
+    MULT (267) 36
+    DIV (268) 37
+    MENOR (269) 25
+    MAYOR (270) 26
+    DIF (271) 28
+    IGUAL (272) 27
+    Y (273) 23
+    O (274) 22
+    NO (275) 24
+    FUNC (276) 11
+    FFUNC (277) 11
+    DEVOLVER (278)
+    MIENTRAS (279) 14
+    FMIENTRAS (280)
+    HACER (281)
+    SI (282) 15
+    SINO (283) 15
+    CASO (284)
+    FCASO (285)
+    VERDADERO (286) 42
+    FALSO (287) 43
+    ENT (288) 38
+    REAL (289) 39
+    NUM (290) 41
+    ID (291) 40
+
+
+Nonterminals, with rules where they appear
+
+    $accept (37)
+        on left: 0
+    programa (38)
+        on left: 1
+        on right: 0
+    sentencias (39)
+        on left: 2 3
+        on right: 1 3 11 14 15
+    sentencia (40)
+        on left: 4 5 6 7 8
+        on right: 2 3
+    asignacion (41)
+        on left: 9 10
+        on right: 4
+    funcion (42)
+        on left: 11
+        on right: 5
+    parametros (43)
+        on left: 12 13
+        on right: 11 13
+    ciclo (44)
+        on left: 14
+        on right: 6
+    condicional (45)
+        on left: 15
+        on right: 7
+    expresion (46)
+        on left: 16 17
+        on right: 8 9 14 15
+    expresion_logica (47)
+        on left: 18 19 20 21
+        on right: 16 18
+    operador_logico (48)
+        on left: 22 23 24 25 26 27 28
+        on right: 18 19
+    expresion_aritmetica (49)
+        on left: 29 30 31
+        on right: 17 19 31
+    termino (50)
+        on left: 32 33
+        on right: 29 30
+    operador_aritmetico (51)
+        on left: 34 35 36 37
+        on right: 30 31
+    tipo_dato (52)
+        on left: 38 39
+        on right: 12
+    identificador (53)
+        on left: 40
+        on right: 9 10 11 12 32
+    numero (54)
+        on left: 41
+        on right: 10 33
+    verdadero (55)
+        on left: 42
+        on right: 20
+    falso (56)
+        on left: 43
+        on right: 21
+
+
+State 0
+
+    0 $accept: • programa $end
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    programa              go to state 9
+    sentencias            go to state 10
+    sentencia             go to state 11
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 1
+
+   31 expresion_aritmetica: PARENTESIS_IZQ • expresion_aritmetica PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion_aritmetica  go to state 24
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+
+
+State 2
+
+   11 funcion: FUNC • identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+
+    ID  shift, and go to state 8
+
+    identificador  go to state 26
+
+
+State 3
+
+   14 ciclo: MIENTRAS • PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 27
+
+
+State 4
+
+   15 condicional: SI • PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 28
+
+
+State 5
+
+   42 verdadero: VERDADERO •
+
+    $default  reduce using rule 42 (verdadero)
+
+
+State 6
+
+   43 falso: FALSO •
+
+    $default  reduce using rule 43 (falso)
+
+
+State 7
+
+   41 numero: NUM •
+
+    $default  reduce using rule 41 (numero)
+
+
+State 8
+
+   40 identificador: ID •
+
+    $default  reduce using rule 40 (identificador)
+
+
+State 9
+
+    0 $accept: programa • $end
+
+    $end  shift, and go to state 29
+
+
+State 10
+
+    1 programa: sentencias •
+    3 sentencias: sentencias • sentencia
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    $default  reduce using rule 1 (programa)
+
+    sentencia             go to state 30
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 11
+
+    2 sentencias: sentencia •
+
+    $default  reduce using rule 2 (sentencias)
+
+
+State 12
+
+    4 sentencia: asignacion •
+
+    $default  reduce using rule 4 (sentencia)
+
+
+State 13
+
+    5 sentencia: funcion •
+
+    $default  reduce using rule 5 (sentencia)
+
+
+State 14
+
+    6 sentencia: ciclo •
+
+    $default  reduce using rule 6 (sentencia)
+
+
+State 15
+
+    7 sentencia: condicional •
+
+    $default  reduce using rule 7 (sentencia)
+
+
+State 16
+
+    8 sentencia: expresion •
+
+    $default  reduce using rule 8 (sentencia)
+
+
+State 17
+
+   16 expresion: expresion_logica •
+   18 expresion_logica: expresion_logica • operador_logico expresion_logica
+
+    MENOR  shift, and go to state 31
+    MAYOR  shift, and go to state 32
+    DIF    shift, and go to state 33
+    IGUAL  shift, and go to state 34
+    Y      shift, and go to state 35
+    O      shift, and go to state 36
+    NO     shift, and go to state 37
+
+    $default  reduce using rule 16 (expresion)
+
+    operador_logico  go to state 38
+
+
+State 18
+
+   17 expresion: expresion_aritmetica •
+   19 expresion_logica: expresion_aritmetica • operador_logico expresion_aritmetica
+
+    MENOR  shift, and go to state 31
+    MAYOR  shift, and go to state 32
+    DIF    shift, and go to state 33
+    IGUAL  shift, and go to state 34
+    Y      shift, and go to state 35
+    O      shift, and go to state 36
+    NO     shift, and go to state 37
+
+    $default  reduce using rule 17 (expresion)
+
+    operador_logico  go to state 39
+
+
+State 19
+
+   29 expresion_aritmetica: termino •
+   30                     | termino • operador_aritmetico termino
+
+    MAS    shift, and go to state 40
+    MENOS  shift, and go to state 41
+    MULT   shift, and go to state 42
+    DIV    shift, and go to state 43
+
+    $default  reduce using rule 29 (expresion_aritmetica)
+
+    operador_aritmetico  go to state 44
+
+
+State 20
+
+    9 asignacion: identificador • ASIGNA expresion
+   10           | identificador • ASIGNA numero
+   32 termino: identificador •
+
+    ASIGNA  shift, and go to state 45
+
+    $default  reduce using rule 32 (termino)
+
+
+State 21
+
+   33 termino: numero •
+
+    $default  reduce using rule 33 (termino)
+
+
+State 22
+
+   20 expresion_logica: verdadero •
+
+    $default  reduce using rule 20 (expresion_logica)
+
+
+State 23
+
+   21 expresion_logica: falso •
+
+    $default  reduce using rule 21 (expresion_logica)
+
+
+State 24
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica • PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER
+
+    PARENTESIS_DER  shift, and go to state 46
+
+
+State 25
+
+   32 termino: identificador •
+
+    $default  reduce using rule 32 (termino)
+
+
+State 26
+
+   11 funcion: FUNC identificador • PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+
+    PARENTESIS_IZQ  shift, and go to state 47
+
+
+State 27
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ • expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion             go to state 48
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 28
+
+   15 condicional: SI PARENTESIS_IZQ • expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion             go to state 49
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 29
+
+    0 $accept: programa $end •
+
+    $default  accept
+
+
+State 30
+
+    3 sentencias: sentencias sentencia •
+
+    $default  reduce using rule 3 (sentencias)
+
+
+State 31
+
+   25 operador_logico: MENOR •
+
+    $default  reduce using rule 25 (operador_logico)
+
+
+State 32
+
+   26 operador_logico: MAYOR •
+
+    $default  reduce using rule 26 (operador_logico)
+
+
+State 33
+
+   28 operador_logico: DIF •
+
+    $default  reduce using rule 28 (operador_logico)
+
+
+State 34
+
+   27 operador_logico: IGUAL •
+
+    $default  reduce using rule 27 (operador_logico)
+
+
+State 35
+
+   23 operador_logico: Y •
+
+    $default  reduce using rule 23 (operador_logico)
+
+
+State 36
+
+   22 operador_logico: O •
+
+    $default  reduce using rule 22 (operador_logico)
+
+
+State 37
+
+   24 operador_logico: NO •
+
+    $default  reduce using rule 24 (operador_logico)
+
+
+State 38
+
+   18 expresion_logica: expresion_logica operador_logico • expresion_logica
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion_logica      go to state 50
+    expresion_aritmetica  go to state 51
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 39
+
+   19 expresion_logica: expresion_aritmetica operador_logico • expresion_aritmetica
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion_aritmetica  go to state 52
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+
+
+State 40
+
+   34 operador_aritmetico: MAS •
+
+    $default  reduce using rule 34 (operador_aritmetico)
+
+
+State 41
+
+   35 operador_aritmetico: MENOS •
+
+    $default  reduce using rule 35 (operador_aritmetico)
+
+
+State 42
+
+   36 operador_aritmetico: MULT •
+
+    $default  reduce using rule 36 (operador_aritmetico)
+
+
+State 43
+
+   37 operador_aritmetico: DIV •
+
+    $default  reduce using rule 37 (operador_aritmetico)
+
+
+State 44
+
+   30 expresion_aritmetica: termino operador_aritmetico • termino
+
+    NUM  shift, and go to state 7
+    ID   shift, and go to state 8
+
+    termino        go to state 53
+    identificador  go to state 25
+    numero         go to state 21
+
+
+State 45
+
+    9 asignacion: identificador ASIGNA • expresion
+   10           | identificador ASIGNA • numero
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion             go to state 54
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 55
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 46
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER • operador_aritmetico PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER
+
+    MAS    shift, and go to state 40
+    MENOS  shift, and go to state 41
+    MULT   shift, and go to state 42
+    DIV    shift, and go to state 43
+
+    operador_aritmetico  go to state 56
+
+
+State 47
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ • parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+
+    ID  shift, and go to state 8
+
+    parametros     go to state 57
+    identificador  go to state 58
+
+
+State 48
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion • PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_DER  shift, and go to state 59
+
+
+State 49
+
+   15 condicional: SI PARENTESIS_IZQ expresion • PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_DER  shift, and go to state 60
+
+
+State 50
+
+   18 expresion_logica: expresion_logica • operador_logico expresion_logica
+   18                 | expresion_logica operador_logico expresion_logica •
+
+    MENOR  shift, and go to state 31
+    MAYOR  shift, and go to state 32
+    DIF    shift, and go to state 33
+    IGUAL  shift, and go to state 34
+    Y      shift, and go to state 35
+    O      shift, and go to state 36
+    NO     shift, and go to state 37
+
+    MENOR     [reduce using rule 18 (expresion_logica)]
+    MAYOR     [reduce using rule 18 (expresion_logica)]
+    DIF       [reduce using rule 18 (expresion_logica)]
+    IGUAL     [reduce using rule 18 (expresion_logica)]
+    Y         [reduce using rule 18 (expresion_logica)]
+    O         [reduce using rule 18 (expresion_logica)]
+    NO        [reduce using rule 18 (expresion_logica)]
+    $default  reduce using rule 18 (expresion_logica)
+
+    operador_logico  go to state 38
+
+    shift/reduce conflict on token O:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       22 operador_logico: • O
+      Example: expresion_logica operador_logico expresion_logica • O expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 22: • O
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 22: O
+
+    shift/reduce conflict on token Y:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       23 operador_logico: • Y
+      Example: expresion_logica operador_logico expresion_logica • Y expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 23: • Y
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 23: Y
+
+    shift/reduce conflict on token NO:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       24 operador_logico: • NO
+      Example: expresion_logica operador_logico expresion_logica • NO expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 24: • NO
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 24: NO
+
+    shift/reduce conflict on token MENOR:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       25 operador_logico: • MENOR
+      Example: expresion_logica operador_logico expresion_logica • MENOR expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 25: • MENOR
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 25: MENOR
+
+    shift/reduce conflict on token MAYOR:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       26 operador_logico: • MAYOR
+      Example: expresion_logica operador_logico expresion_logica • MAYOR expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 26: • MAYOR
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 26: MAYOR
+
+    shift/reduce conflict on token IGUAL:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       27 operador_logico: • IGUAL
+      Example: expresion_logica operador_logico expresion_logica • IGUAL expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 27: • IGUAL
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 27: IGUAL
+
+    shift/reduce conflict on token DIF:
+       18 expresion_logica: expresion_logica operador_logico expresion_logica •
+       28 operador_logico: • DIF
+      Example: expresion_logica operador_logico expresion_logica • DIF expresion_logica
+      Shift derivation
+        expresion_logica
+        ↳ 18: expresion_logica operador_logico expresion_logica
+                                               ↳ 18: expresion_logica operador_logico expresion_logica
+                                                                      ↳ 28: • DIF
+      Reduce derivation
+        expresion_logica
+        ↳ 18: expresion_logica                                          operador_logico expresion_logica
+              ↳ 18: expresion_logica operador_logico expresion_logica • ↳ 28: DIF
+
+
+
+State 51
+
+   19 expresion_logica: expresion_aritmetica • operador_logico expresion_aritmetica
+
+    MENOR  shift, and go to state 31
+    MAYOR  shift, and go to state 32
+    DIF    shift, and go to state 33
+    IGUAL  shift, and go to state 34
+    Y      shift, and go to state 35
+    O      shift, and go to state 36
+    NO     shift, and go to state 37
+
+    operador_logico  go to state 39
+
+
+State 52
+
+   19 expresion_logica: expresion_aritmetica operador_logico expresion_aritmetica •
+
+    $default  reduce using rule 19 (expresion_logica)
+
+
+State 53
+
+   30 expresion_aritmetica: termino operador_aritmetico termino •
+
+    $default  reduce using rule 30 (expresion_aritmetica)
+
+
+State 54
+
+    9 asignacion: identificador ASIGNA expresion •
+
+    $default  reduce using rule 9 (asignacion)
+
+
+State 55
+
+   10 asignacion: identificador ASIGNA numero •
+   33 termino: numero •
+
+    $end            reduce using rule 10 (asignacion)
+    $end            [reduce using rule 33 (termino)]
+    PARENTESIS_IZQ  reduce using rule 10 (asignacion)
+    PARENTESIS_IZQ  [reduce using rule 33 (termino)]
+    CORCHETE_DER    reduce using rule 10 (asignacion)
+    CORCHETE_DER    [reduce using rule 33 (termino)]
+    FUNC            reduce using rule 10 (asignacion)
+    FUNC            [reduce using rule 33 (termino)]
+    MIENTRAS        reduce using rule 10 (asignacion)
+    MIENTRAS        [reduce using rule 33 (termino)]
+    SI              reduce using rule 10 (asignacion)
+    SI              [reduce using rule 33 (termino)]
+    VERDADERO       reduce using rule 10 (asignacion)
+    VERDADERO       [reduce using rule 33 (termino)]
+    FALSO           reduce using rule 10 (asignacion)
+    FALSO           [reduce using rule 33 (termino)]
+    NUM             reduce using rule 10 (asignacion)
+    NUM             [reduce using rule 33 (termino)]
+    ID              reduce using rule 10 (asignacion)
+    ID              [reduce using rule 33 (termino)]
+    $default        reduce using rule 33 (termino)
+
+    reduce/reduce conflict on tokens $end, PARENTESIS_IZQ, CORCHETE_DER, FUNC, MIENTRAS, SI, VERDADERO, FALSO, NUM, ID:
+       10 asignacion: identificador ASIGNA numero •
+       33 termino: numero •
+      Example: identificador ASIGNA numero •
+      First reduce derivation
+        asignacion
+        ↳ 10: identificador ASIGNA numero •
+      Second reduce derivation
+        asignacion
+        ↳ 9: identificador ASIGNA expresion
+                                  ↳ 17: expresion_aritmetica
+                                        ↳ 29: termino
+                                              ↳ 33: numero •
+
+
+
+State 56
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER operador_aritmetico • PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift, and go to state 61
+
+
+State 57
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros • PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+   13 parametros: parametros • COMA parametros
+
+    PARENTESIS_DER  shift, and go to state 62
+    COMA            shift, and go to state 63
+
+
+State 58
+
+   12 parametros: identificador • DOSPUNTOS tipo_dato
+
+    DOSPUNTOS  shift, and go to state 64
+
+
+State 59
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion PARENTESIS_DER • CORCHETE_IZQ sentencias CORCHETE_DER
+
+    CORCHETE_IZQ  shift, and go to state 65
+
+
+State 60
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER • CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    CORCHETE_IZQ  shift, and go to state 66
+
+
+State 61
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ • expresion_aritmetica PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    expresion_aritmetica  go to state 67
+    termino               go to state 19
+    identificador         go to state 25
+    numero                go to state 21
+
+
+State 62
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER • CORCHETE_IZQ sentencias CORCHETE_DER FFUNC
+
+    CORCHETE_IZQ  shift, and go to state 68
+
+
+State 63
+
+   13 parametros: parametros COMA • parametros
+
+    ID  shift, and go to state 8
+
+    parametros     go to state 69
+    identificador  go to state 58
+
+
+State 64
+
+   12 parametros: identificador DOSPUNTOS • tipo_dato
+
+    ENT   shift, and go to state 70
+    REAL  shift, and go to state 71
+
+    tipo_dato  go to state 72
+
+
+State 65
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ • sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencias            go to state 73
+    sentencia             go to state 11
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 66
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ • sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencias            go to state 74
+    sentencia             go to state 11
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 67
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ expresion_aritmetica • PARENTESIS_DER
+
+    PARENTESIS_DER  shift, and go to state 75
+
+
+State 68
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ • sentencias CORCHETE_DER FFUNC
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencias            go to state 76
+    sentencia             go to state 11
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 69
+
+   13 parametros: parametros • COMA parametros
+   13           | parametros COMA parametros •
+
+    COMA  shift, and go to state 63
+
+    COMA      [reduce using rule 13 (parametros)]
+    $default  reduce using rule 13 (parametros)
+
+    shift/reduce conflict on token COMA:
+       13 parametros: parametros COMA parametros •
+       13 parametros: parametros • COMA parametros
+      Example: parametros COMA parametros • COMA parametros
+      Shift derivation
+        parametros
+        ↳ 13: parametros COMA parametros
+                              ↳ 13: parametros • COMA parametros
+      Reduce derivation
+        parametros
+        ↳ 13: parametros                         COMA parametros
+              ↳ 13: parametros COMA parametros •
+
+
+
+State 70
+
+   38 tipo_dato: ENT •
+
+    $default  reduce using rule 38 (tipo_dato)
+
+
+State 71
+
+   39 tipo_dato: REAL •
+
+    $default  reduce using rule 39 (tipo_dato)
+
+
+State 72
+
+   12 parametros: identificador DOSPUNTOS tipo_dato •
+
+    $default  reduce using rule 12 (parametros)
+
+
+State 73
+
+    3 sentencias: sentencias • sentencia
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias • CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    CORCHETE_DER    shift, and go to state 77
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencia             go to state 30
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 74
+
+    3 sentencias: sentencias • sentencia
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias • CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    CORCHETE_DER    shift, and go to state 78
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencia             go to state 30
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 75
+
+   31 expresion_aritmetica: PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER operador_aritmetico PARENTESIS_IZQ expresion_aritmetica PARENTESIS_DER •
+
+    $default  reduce using rule 31 (expresion_aritmetica)
+
+
+State 76
+
+    3 sentencias: sentencias • sentencia
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias • CORCHETE_DER FFUNC
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    CORCHETE_DER    shift, and go to state 79
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencia             go to state 30
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 77
+
+   14 ciclo: MIENTRAS PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER •
+
+    $default  reduce using rule 14 (ciclo)
+
+
+State 78
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER • SINO CORCHETE_IZQ sentencias CORCHETE_DER
+
+    SINO  shift, and go to state 80
+
+
+State 79
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER • FFUNC
+
+    FFUNC  shift, and go to state 81
+
+
+State 80
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO • CORCHETE_IZQ sentencias CORCHETE_DER
+
+    CORCHETE_IZQ  shift, and go to state 82
+
+
+State 81
+
+   11 funcion: FUNC identificador PARENTESIS_IZQ parametros PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER FFUNC •
+
+    $default  reduce using rule 11 (funcion)
+
+
+State 82
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ • sentencias CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencias            go to state 83
+    sentencia             go to state 11
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 83
+
+    3 sentencias: sentencias • sentencia
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias • CORCHETE_DER
+
+    PARENTESIS_IZQ  shift, and go to state 1
+    CORCHETE_DER    shift, and go to state 84
+    FUNC            shift, and go to state 2
+    MIENTRAS        shift, and go to state 3
+    SI              shift, and go to state 4
+    VERDADERO       shift, and go to state 5
+    FALSO           shift, and go to state 6
+    NUM             shift, and go to state 7
+    ID              shift, and go to state 8
+
+    sentencia             go to state 30
+    asignacion            go to state 12
+    funcion               go to state 13
+    ciclo                 go to state 14
+    condicional           go to state 15
+    expresion             go to state 16
+    expresion_logica      go to state 17
+    expresion_aritmetica  go to state 18
+    termino               go to state 19
+    identificador         go to state 20
+    numero                go to state 21
+    verdadero             go to state 22
+    falso                 go to state 23
+
+
+State 84
+
+   15 condicional: SI PARENTESIS_IZQ expresion PARENTESIS_DER CORCHETE_IZQ sentencias CORCHETE_DER SINO CORCHETE_IZQ sentencias CORCHETE_DER •
+
+    $default  reduce using rule 15 (condicional)

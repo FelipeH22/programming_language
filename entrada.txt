@@ -1,0 +1,11 @@
+fun maxcd(a: entero, b:entero) dev(m: entero)
+    mientras a != b hacer
+        caso a > b hacer
+            a := a-b
+        fcaso
+        caso a < b hacer
+            b := b-a
+        fcaso
+    fmientras
+    dev a
+ffun

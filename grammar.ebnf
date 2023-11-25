@@ -1,0 +1,50 @@
+programa ::= sentencias
+
+sentencias ::= sentencia
+               | sentencias sentencia
+
+sentencia ::= asignacion 
+              | funcion 
+              | ciclo 
+              | condicional 
+              | expresion
+
+asignacion ::= identificador "=" expresion
+
+funcion ::= "fun" identificador "(" parametros ")" sentencias "ffun"
+
+parametros ::= identificador DOSPUNTOS
+             | parametros COMA identificador
+
+ciclo ::= "mientras" "(" expresion ")" sentencias
+
+condicional ::= "si" "(" expresion ")" "{" sentencias "}" "sino" "{" sentencias "}"
+
+expresion ::= expresion_logica 
+              | expresion_aritmetica
+
+expresion_logica ::= operador_logico expresion_logica expresion_logica 
+                     | expresion_aritmetica operador_logico expresion_aritmetica | verdadero | falso
+
+operador_logico ::= "y" 
+                    | "o" 
+                    | "no"
+
+expresion_aritmetica ::= termino 
+                         | expresion_aritmetica operador_aritmetico termino
+
+termino ::= identificador 
+            | numero 
+            | "(" expresion_aritmetica ")"
+
+operador_aritmetico ::= "+" 
+                        | "-" 
+                        | "*" 
+                        | "/"
+
+tipo_dato ::= ENTERO
+
+identificador ::= [a-zA-Z_][a-zA-Z0-9_]*
+numero ::= [0-9]+
+verdadero ::= "verdadero"
+falso ::= "falso"
